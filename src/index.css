@@ -1,0 +1,81 @@
+ body {
+  background-color: #047cee !important;
+ 
+}
+
+.header {
+  text-align: center !important;
+  color:black !important;
+  font-size: 50px !important;
+  font-style: italic !important;
+
+ 
+}
+.container {
+  
+ font-family: Stencil std, fantasy !important;
+ display: grid;
+ place-items: center;
+ padding-top: 50px;
+}
+
+.input {
+  outline: none;
+  border: none;
+  border-radius: 30px;
+  width:250px;
+  padding:10px;
+  align-self: center;
+  text-align: center;
+  font-size: 30px;
+
+}
+input:focus::placeholder{
+  color:transparent;
+}
+
+.submitButton {
+  margin-top: 25px !important;
+  background-color: black !important;
+  border-radius: 30px !important;
+  width: 175px !important;
+  padding:5px !important;
+  font-size: 25px !important;
+ 
+  
+}
+
+.card {
+  border-radius: 20px !important;
+  font-family: Stencil std, fantasy !important;
+  font-size: 20px;
+  display: grid;
+  margin-top: 50px !important;
+  margin: 0 auto; 
+  float: none; 
+  margin-bottom: 10px; 
+  color: #047cee;
+}
+
+.temp {
+  font-size: 100px;
+  text-align: center;
+}
+
+.card .inside{
+ 
+  margin-bottom: 40px;
+  border:none;
+  
+}
+
+.error {
+  text-align: center;
+  margin-top: 40px;
+  font-size: 70px;
+  color: black;
+}
+
+.icons {
+  text-align: center;
+}
