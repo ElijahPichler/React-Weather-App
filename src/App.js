@@ -17,14 +17,16 @@ class App extends Component {
     super()
     this.state = {
       city:'',
-      sunrise:'',
-      sunset:'',
       minTemp:'',
       maxTemp:'',
       cityError:'',
       temp:0,
       tempInput:'',
       feelsLike:'',
+      humidity:'',
+      description:'',
+      sunset:'',
+      sunrise:'',
       list:null
     }
   }
@@ -37,18 +39,39 @@ class App extends Component {
         .then(result => {
           //reseting the lsit allows the program to correct the user if state is spelled wrong
           this.setState({list:null})
+          this.setState({humidity:result.main.humidity})
+          this.setState({description:result.weather[0].description})
+          
+          let sunsetData = new Date(result.sys.sunset * 1000)
+          let sunriseData = new Date(result.sys.sunrise * 1000)
+          
+          let sunsetHours = ''
+          let sunsetMin = ''
+          let sunriseHours = ''
+          let sunriseMin = ''
+
+          sunsetHours = (sunsetData.getHours() > 12)?(sunsetData.getHours() - 12):(sunsetData.getHours())
+          sunsetMin = sunsetData.getMinutes()
+          sunriseMin = (sunriseData.getMinutes().toString().length === 1) ? ('0'+ sunriseData.getMinutes().toString()):sunriseData.getMinutes()
+         
+
+          this.setState({sunset:(sunsetHours + ':' + sunsetMin)})
+          this.setState({sunrise:(sunriseData.getHours() + ':' + sunriseMin)})
+         
+          
+
+        
+          
 
           this.setState({
             city: this.state.tempInput.toLowerCase(),
-            sunrise: result.sys.sunrise,
-            sunset: result.sys.sunset,
             minTemp: result.main.temp_min,
             maxTemp: result.main.temp_max,
             temp: result.main.temp,
             feelsLike: result.main.feels_like,
             list:result
           })
-          console.log(this.state.temp)
+          
         })
         .catch(err => {
           this.setState({cityError:"City unknown, try again."})
@@ -82,7 +105,12 @@ class App extends Component {
           city= {this.state.city}
           minTemp= {this.state.minTemp} 
           maxTemp= {this.state.maxTemp} 
-          feelsLike= {this.state.feelsLike} />
+          feelsLike= {this.state.feelsLike} 
+          sunrise= {this.state.sunrise}
+          sunset= {this.state.sunset}
+          humidity={this.state.humidity}
+          description={this.state.description}
+          />
           : <h2 className="error">{this.state.cityError}</h2>
         }
         </div>
